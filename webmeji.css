@@ -1,26 +1,36 @@
-/* webmeji */
+/* ✰ Aisha Asal Webmeji Style ✰ */
+
 .webmeji-container {
   position: fixed;
   bottom: 0;
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  overflow: visible;
   z-index: 9999;
+  pointer-events: auto;
 }
 
 .webmeji-container img {
-  width: 100%;
+  width: 150px;
   height: auto;
   user-select: none;
   pointer-events: none;
   display: block;
-  transform-origin: center;
+  transform-origin: center bottom;
 }
 
+
+/* للموبايل */
 @media (max-width: 768px) {
-  .webmeji-container {
-    width: 50px;
-    height: 50px;
-  }
-}
 
+  .webmeji-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .webmeji-container img {
+    width: 120px;
+  }
+
+}
