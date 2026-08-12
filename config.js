@@ -2,28 +2,28 @@
 // AI assistant character
 
 window.SPAWNING = [
-  { id: 'aisha-asal', config: 'AISHA_CONFIG' }
+  {
+    id: "aisha-asal",
+    config: "AISHA_CONFIG"
+  }
 ];
-
 
 window.AISHA_CONFIG = {
 
   ALLOWANCES: [
-    'pet',
-    'drag',
-    'bottom',
-    'top',
-    'left',
-    'right'
+    "pet",
+    "drag",
+    "bottom",
+    "top",
+    "left",
+    "right"
   ],
-
 
   walkspeed: 50,
   fallspeed: 150,
   jumpspeed: 200,
 
   gettingupspeed: 3500,
-
 
   walk: {
     frames: [
@@ -36,7 +36,6 @@ window.AISHA_CONFIG = {
     loops: 6
   },
 
-
   stand: {
     frames: [
       "shime1.png"
@@ -44,7 +43,6 @@ window.AISHA_CONFIG = {
     interval: 1000,
     loops: 1
   },
-
 
   sit: {
     frames: [
@@ -57,7 +55,6 @@ window.AISHA_CONFIG = {
     max: 11000
   },
 
-
   spin: {
     frames: [
       "shime1.png"
@@ -65,7 +62,6 @@ window.AISHA_CONFIG = {
     interval: 150,
     loops: 3
   },
-
 
   dance: {
     frames: [
@@ -77,7 +73,6 @@ window.AISHA_CONFIG = {
     loops: 5
   },
 
-
   trip: {
     frames: [
       "shime18.png",
@@ -88,11 +83,9 @@ window.AISHA_CONFIG = {
     loops: 1
   },
 
-
   forcewalk: {
     loops: 6
   },
-
 
   forcethink: {
     frames: [
@@ -103,7 +96,6 @@ window.AISHA_CONFIG = {
     loops: 2
   },
 
-
   pet: {
     frames: [
       "shime15.png",
@@ -112,7 +104,6 @@ window.AISHA_CONFIG = {
     ],
     interval: 400
   },
-
 
   drag: {
     frames: [
@@ -124,7 +115,6 @@ window.AISHA_CONFIG = {
     interval: 210
   },
 
-
   falling: {
     frames: [
       "shime10.png",
@@ -133,7 +123,6 @@ window.AISHA_CONFIG = {
     interval: 200,
     loops: 2
   },
-
 
   fallen: {
     frames: [
@@ -145,42 +134,38 @@ window.AISHA_CONFIG = {
     loops: 1
   },
 
-
   ORIGINAL_ACTIONS: [
-    'walk',
-    'walk',
-    'walk',
-    'walk',
-    'walk',
-    'walk',
-    'spin',
-    'spin',
-    'spin',
-    'sit',
-    'sit',
-    'dance',
-    'dance',
-    'dance',
-    'dance',
-    'dance',
-    'trip'
+    "walk",
+    "walk",
+    "walk",
+    "walk",
+    "walk",
+    "walk",
+    "spin",
+    "spin",
+    "spin",
+    "sit",
+    "sit",
+    "dance",
+    "dance",
+    "dance",
+    "dance",
+    "dance",
+    "trip"
   ],
-
 
   EDGE_ACTIONS: [
-    'hang',
-    'hang',
-    'climb',
-    'climb',
-    'climb',
-    'climb',
-    'climb',
-    'fall'
+    "hang",
+    "hang",
+    "climb",
+    "climb",
+    "climb",
+    "climb",
+    "climb",
+    "fall"
   ],
 
-
   JUMP_CHANCE: 0.1,
-
 
   climbSide: {
     frames: [
@@ -190,7 +175,6 @@ window.AISHA_CONFIG = {
     interval: 200,
     loops: 2
   },
-
 
   hangstillSide: {
     frames: [
@@ -203,7 +187,6 @@ window.AISHA_CONFIG = {
     max: 11000
   },
 
-
   climbTop: {
     frames: [
       "shime24.png",
@@ -212,7 +195,6 @@ window.AISHA_CONFIG = {
     interval: 200,
     loops: 8
   },
-
 
   hangstillTop: {
     frames: [
@@ -225,12 +207,27 @@ window.AISHA_CONFIG = {
     max: 11000
   },
 
-
   jump: {
     frames: [
       "shime22.png"
     ],
     interval: 200
   }
-
 };
+
+
+// تحويل مسارات الصور إلى GitHub Pages
+const AISHA_BASE =
+  "https://bienbanmo-dot.github.io/aisha-webmeji/";
+
+for (const action of Object.values(window.AISHA_CONFIG)) {
+  if (
+    action &&
+    typeof action === "object" &&
+    Array.isArray(action.frames)
+  ) {
+    action.frames = action.frames.map(
+      (src) => AISHA_BASE + src
+    );
+  }
+  }
