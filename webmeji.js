@@ -81,6 +81,14 @@ class Creature {
   }
 });
     document.body.appendChild(this.container);
+    this.img.addEventListener('pointerdown', () => {
+  const audio = document.getElementById('aishaClickSound');
+
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  }
+});
 
     // create img element for first frame of sprite
     this.img = document.createElement('img');
