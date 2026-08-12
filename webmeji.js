@@ -56,58 +56,54 @@ function preloadImages(config) {
 }
 
 // creature class -------------------------------------------------------
-class Creature {
   constructor(containerId, spriteConfig) {
     this.currentEdge = 'bottom';
 
     // create div to hold the sprite image
     this.container = document.createElement('div');
     this.container.className = 'webmeji-container';
-    this.container.addEventListener('pointerdown', () => {
-  alert('AISHA PRESSED');
-
-  const audio = document.getElementById('aishaClickSound');
-
-  if (audio) {
-    audio.currentTime = 0;
-
-    audio.play().then(() => {
-      console.log('AISHA SOUND PLAYING');
-    }).catch((err) => {
-      console.log('AISHA SOUND ERROR', err);
-    });
-  } else {
-    console.log('AISHA AUDIO ELEMENT NOT FOUND');
-  }
-});
     document.body.appendChild(this.container);
-    this.img.addEventListener('pointerdown', () => {
-  const audio = document.getElementById('aishaClickSound');
 
-  if (audio) {
-    audio.currentTime = 0;
-    audio.play().catch(() => {});
-  }
-});
-
-    // create img element for first frame of sprite
+    // create img element
     this.img = document.createElement('img');
     this.img.id = containerId;
-    this.img.src = spriteConfig.walk.frames[0]; // default to first walk frame
+    this.img.src = spriteConfig.walk.frames[0];
     this.container.appendChild(this.img);
+
+    // Aisha click sound
+    this.img.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+
+      const audio = document.getElementById('aishaClickSound');
+
+      if (audio) {
+        audio.currentTime = 0;
+
+        audio.play()
+          .then(() => {
+            console.log('AISHA SOUND PLAYING');
+          })
+          .catch((err) => {
+            console.log('AISHA SOUND ERROR:', err);
+          });
+
+      } else {
+        console.log('AISHA AUDIO ELEMENT NOT FOUND');
+      }
+    });
 
     // store sprite configuration & randomize action sequence
     this.spriteConfig = spriteConfig;
     this.actionSequence = this.shuffle([...this.spriteConfig.ORIGINAL_ACTIONS]);
+
     this.currentActionIndex = 0;
     this.currentAction = null;
-    this.frameTimer = null;          // interval for frame updates
-    this.dragFrameTimer = null;      // interval for drag animation
-    this.actionCompletionTimer = null; // timer for completing actions
+    this.frameTimer = null;
+    this.dragFrameTimer = null;
+    this.actionCompletionTimer = null;
     this.currentFrame = 0;
-    this.direction = 1;              // movement direction, 1 = right, -1 = left
-    this.facing = 'left';            // visual facing direction of base sprites
-
+    this.direction = 1;
+    this.facing = 'left';
     // starting states
     this.isDragging = false;
     this.isFalling = false;
