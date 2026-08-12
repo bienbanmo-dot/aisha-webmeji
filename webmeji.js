@@ -56,7 +56,8 @@ function preloadImages(config) {
 }
 
 // creature class -------------------------------------------------------
-  constructor(containerId, spriteConfig) {
+ class Creature {
+constructor(containerId, spriteConfig) {
     this.currentEdge = 'bottom';
 
     // create div to hold the sprite image
@@ -69,22 +70,7 @@ function preloadImages(config) {
     this.img.id = containerId;
     this.img.src = spriteConfig.walk.frames[0];
     this.container.appendChild(this.img);
-    this.img.addEventListener('pointerdown', (e) => {
-  e.stopPropagation();
-
-  const audio = document.getElementById('aishaClickSound');
-
-  if (audio) {
-    audio.currentTime = 0;
-
-    audio.play()
-      .then(() => console.log('AISHA SOUND PLAYING'))
-      .catch(err => console.log('AISHA SOUND ERROR:', err));
-  } else {
-    console.log('AISHA AUDIO ELEMENT NOT FOUND');
-  }
-});
-
+    
     // Aisha click sound
     this.img.addEventListener('pointerdown', (e) => {
       e.stopPropagation();
