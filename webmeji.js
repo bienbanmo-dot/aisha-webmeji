@@ -64,7 +64,7 @@ class Creature {
     this.container = document.createElement('div');
     this.container.className = 'webmeji-container';
     this.container.addEventListener('pointerdown', () => {
-  console.log('AISHA PRESSED');
+  alert('AISHA PRESSED');
 
   const audio = document.getElementById('aishaClickSound');
 
