@@ -63,6 +63,18 @@ class Creature {
     // create div to hold the sprite image
     this.container = document.createElement('div');
     this.container.className = 'webmeji-container';
+    this.container.addEventListener('pointerup', (e) => {
+  if (this.isDragging) return;
+
+  const audio = new Audio(
+    'https://www.image2url.com/r2/default/audio/1786568978205-2f06a1e8-60d7-41d6-800d-c19080260f3b.mp3'
+  );
+
+  audio.volume = 1;
+  audio.play().catch(err => {
+    console.log('Aisha sound blocked:', err);
+  });
+});
     document.body.appendChild(this.container);
 
     // create img element for first frame of sprite
