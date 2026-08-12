@@ -63,14 +63,21 @@ class Creature {
     // create div to hold the sprite image
     this.container = document.createElement('div');
     this.container.className = 'webmeji-container';
-    this.container.addEventListener('touchend', () => {
+    this.container.addEventListener('pointerdown', () => {
+  console.log('AISHA PRESSED');
+
   const audio = document.getElementById('aishaClickSound');
 
   if (audio) {
     audio.currentTime = 0;
-    audio.play().catch(err => {
-      console.log('Aisha audio error:', err);
+
+    audio.play().then(() => {
+      console.log('AISHA SOUND PLAYING');
+    }).catch((err) => {
+      console.log('AISHA SOUND ERROR', err);
     });
+  } else {
+    console.log('AISHA AUDIO ELEMENT NOT FOUND');
   }
 });
     document.body.appendChild(this.container);
